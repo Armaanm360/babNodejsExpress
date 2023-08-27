@@ -1,0 +1,1 @@
+{"version":3,"file":"admin.setting.service.js","sourceRoot":"","sources":["../../../src/appAdmin/adminService/admin.setting.service.ts"],"names":[],"mappings":";;;;;;;;;;;;;;AAAA,uFAA+D;AAE/D,MAAM,mBAAoB,SAAQ,0BAAgB;IAChD;QACE,KAAK,EAAE,CAAC;IACV,CAAC;IAED,sBAAsB;IACT,iBAAiB,CAAC,GAAY;8DAAG,CAAC;KAAA;CAChD;AACD,kBAAe,mBAAmB,CAAC"}
