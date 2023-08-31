@@ -6,6 +6,8 @@ import TraineeRouter from "../appTrainee/traineeRouter/trainee.router";
 import AuthChecker from "../common/middlewares/authChecker/authChecker";
 import MemberRouter from "../appMember/member.router";
 import StudentRouter from "../appStudent/student.router";
+import announcementrouter from "../newAnnouncementModule/announcement.router";
+import BuildingRouter from "../appBuilding/building.router";
 
 class RootRouter {
   public v1Router = Router();
@@ -16,6 +18,8 @@ class RootRouter {
   private memberRouter = new MemberRouter();
   private traineeRouter = new TraineeRouter();
   private studentRouter = new StudentRouter();
+  private announcementRouter = new announcementrouter();
+  private buildingRouter = new BuildingRouter();
 
   constructor() {
     this.callV1Router();
@@ -53,6 +57,13 @@ class RootRouter {
     this.v1Router.use(
       "/student", this.studentRouter.StudentRouter
     );
+
+    this.v1Router.use("/announcement", this.announcementRouter.announcementrouter);
+
+
+    //building
+
+    this.v1Router.use("/building", this.buildingRouter.BuildingRouter);
 
     // external routers some public and some protected
     // this.v1Router.use('/external');

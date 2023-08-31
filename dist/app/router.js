@@ -11,6 +11,8 @@ const trainee_router_1 = __importDefault(require("../appTrainee/traineeRouter/tr
 const authChecker_1 = __importDefault(require("../common/middlewares/authChecker/authChecker"));
 const member_router_1 = __importDefault(require("../appMember/member.router"));
 const student_router_1 = __importDefault(require("../appStudent/student.router"));
+const announcement_router_1 = __importDefault(require("../newAnnouncementModule/announcement.router"));
+const building_router_1 = __importDefault(require("../appBuilding/building.router"));
 class RootRouter {
     constructor() {
         this.v1Router = (0, express_1.Router)();
@@ -21,6 +23,8 @@ class RootRouter {
         this.memberRouter = new member_router_1.default();
         this.traineeRouter = new trainee_router_1.default();
         this.studentRouter = new student_router_1.default();
+        this.announcementRouter = new announcement_router_1.default();
+        this.buildingRouter = new building_router_1.default();
         this.callV1Router();
     }
     callV1Router() {
@@ -35,6 +39,9 @@ class RootRouter {
         // trainee router all are protected
         this.v1Router.use("/trainee", this.authChecker.traineeAuthChecker, this.traineeRouter.TraineeRouter);
         this.v1Router.use("/student", this.studentRouter.StudentRouter);
+        this.v1Router.use("/announcement", this.announcementRouter.announcementrouter);
+        //building
+        this.v1Router.use("/building", this.buildingRouter.BuildingRouter);
         // external routers some public and some protected
         // this.v1Router.use('/external');
     }

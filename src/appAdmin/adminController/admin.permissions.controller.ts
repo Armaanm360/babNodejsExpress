@@ -37,11 +37,6 @@ class AdminPermissionController extends AbstractController {
           name,
         });
 
-      await this.createAudit(
-        id,
-        'created permission. id: ' + data.data?.id,
-        code
-      );
 
       res.status(code).json(data);
     }

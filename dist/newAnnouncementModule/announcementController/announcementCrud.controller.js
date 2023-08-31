@@ -24,31 +24,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const abstract_controller_1 = __importDefault(require("../../abstract/abstract.controller"));
-const admin_permissions_service_1 = __importDefault(require("../adminService/admin.permissions.service"));
-class AdminPermissionController extends abstract_controller_1.default {
+const anouncementCrude_service_1 = __importDefault(require("./../announcementService/anouncementCrude.service"));
+class announcementCrudController extends abstract_controller_1.default {
     constructor() {
-        super();
-        this.adminPermissionsService = new admin_permissions_service_1.default();
-        // create permission group controller
-        this.createPermissionGroup = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const { id } = req.admin;
-            const { name } = req.body;
-            const _b = yield this.adminPermissionsService.createPermissionGroup(name), { code } = _b, data = __rest(_b, ["code"]);
-            yield this.createAudit(id, 'created permission group id: ' + ((_a = data.data) === null || _a === void 0 ? void 0 : _a.id), code);
-            res.status(code).json(data);
+        super(...arguments);
+        //get all announcements
+        this.announcemnetCrudService = new anouncementCrude_service_1.default();
+        this.getAllAnouncements = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
+            res.send('Hoise Bro');
         }));
-        // create permission controller
-        this.createPermission = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.admin;
-            const { group_id, name } = req.body;
-            const _c = yield this.adminPermissionsService.createPermission({
-                group_id,
-                name,
-            }), { code } = _c, data = __rest(_c, ["code"]);
+        //create announcements
+        this.createAnouncement = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { announcement_created_by, announcement_topic, announcemet_text, announcemet_date, announcemet_for } = req.body;
+            const _a = yield this.announcemnetCrudService.createAnnouce({
+                announcement_created_by, announcement_topic, announcemet_text, announcemet_date, announcemet_for
+            }), { code } = _a, data = __rest(_a, ["code"]);
             res.status(code).json(data);
         }));
     }
 }
-exports.default = AdminPermissionController;
-//# sourceMappingURL=admin.permissions.controller.js.map
+exports.default = announcementCrudController;
+//# sourceMappingURL=announcementCrud.controller.js.map

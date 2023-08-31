@@ -13,7 +13,13 @@ class studentCreateRouter extends AbstractRouter {
 
   private callRouter() {
 
+    this.router
+      .route('/id-type/:id/:type')
+      .get(this.studentCreateController.getStudentIdAndType);
+
     this.router.route('/student-view').get(this.studentCreateController.getStudent);
+
+    this.router.route('/id-wise/:id').get(this.studentCreateController.getStudentIdWise);
 
 
   }
