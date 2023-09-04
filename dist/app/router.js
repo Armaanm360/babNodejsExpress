@@ -13,6 +13,8 @@ const member_router_1 = __importDefault(require("../appMember/member.router"));
 const student_router_1 = __importDefault(require("../appStudent/student.router"));
 const announcement_router_1 = __importDefault(require("../newAnnouncementModule/announcement.router"));
 const building_router_1 = __importDefault(require("../appBuilding/building.router"));
+const app_audit_router_1 = __importDefault(require("./../appAudit/app.audit.router"));
+const audit_trail_router_1 = __importDefault(require("../auditTrail/audit.trail.router"));
 class RootRouter {
     constructor() {
         this.v1Router = (0, express_1.Router)();
@@ -25,25 +27,30 @@ class RootRouter {
         this.studentRouter = new student_router_1.default();
         this.announcementRouter = new announcement_router_1.default();
         this.buildingRouter = new building_router_1.default();
+        this.appAudit = new app_audit_router_1.default();
+        this.auditTrail = new audit_trail_router_1.default();
         this.callV1Router();
     }
     callV1Router() {
         // auth router for member, admin, trainee
-        this.v1Router.use("/auth", this.authRouter.AuthRouter);
+        this.v1Router.use('/auth', this.authRouter.AuthRouter);
         // common router for all
-        this.v1Router.use("/common", this.commonRouter.router);
+        this.v1Router.use('/common', this.commonRouter.router);
         // admin router all are protected
-        this.v1Router.use("/admin", this.authChecker.adminAuthChecker, this.adminRouter.AdminRouter);
+        this.v1Router.use('/admin', this.authChecker.adminAuthChecker, this.adminRouter.AdminRouter);
         // member router all are protected
-        this.v1Router.use("/member", this.authChecker.memberAuthChecker, this.memberRouter.MemberRouter);
+        this.v1Router.use('/member', this.authChecker.memberAuthChecker, this.memberRouter.MemberRouter);
         // trainee router all are protected
-        this.v1Router.use("/trainee", this.authChecker.traineeAuthChecker, this.traineeRouter.TraineeRouter);
-        this.v1Router.use("/student", this.studentRouter.StudentRouter);
-        this.v1Router.use("/announcement", this.announcementRouter.announcementrouter);
+        this.v1Router.use('/trainee', this.authChecker.traineeAuthChecker, this.traineeRouter.TraineeRouter);
+        this.v1Router.use('/student', this.studentRouter.StudentRouter);
+        this.v1Router.use('/announcement', this.announcementRouter.announcementrouter);
         //building
-        this.v1Router.use("/building", this.buildingRouter.BuildingRouter);
+        this.v1Router.use('/building', this.buildingRouter.BuildingRouter);
         // external routers some public and some protected
         // this.v1Router.use('/external');
+        //create apps
+        this.v1Router.use('/apps', this.appAudit.appAuditRouter);
+        this.v1Router.use('/audit', this.auditTrail.AuditTrailRouter);
     }
 }
 exports.default = RootRouter;

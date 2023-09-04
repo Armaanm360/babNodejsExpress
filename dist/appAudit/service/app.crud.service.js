@@ -13,27 +13,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const abstract_service_1 = __importDefault(require("../../abstract/abstract.service"));
-class FindStudent extends abstract_service_1.default {
-    constructor() {
-        super();
-    }
-    findAnyStudent(id) {
+class CrudAppService extends abstract_service_1.default {
+    createService({ app_name, app_detail }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const student = yield this.db('accounts').select('*').where('id', id);
-            if (!student.length) {
+            const res = yield this.db('apps').insert({ app_name, app_detail });
+            if (res.length) {
                 return {
-                    success: false,
-                    code: this.StatusCode.HTTP_NOT_FOUND,
-                    message: this.ResMsg.HTTP_NOT_FOUND,
+                    succcess: true,
+                    code: 201,
+                    message: 'App Added Successfully',
+                    data: { app_name, app_detail },
                 };
             }
+            else {
+                return {
+                    success: false,
+                    code: 401,
+                    message: 'Data not found',
+                };
+            }
+        });
+    }
+    getListService() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const apps = yield this.db('apps').select('*');
+            console.log(apps);
             return {
                 success: true,
                 code: this.StatusCode.HTTP_OK,
-                data: student[0],
+                data: apps,
             };
         });
     }
 }
-exports.default = FindStudent;
-//# sourceMappingURL=student.find.service.js.map
+exports.default = CrudAppService;
+//# sourceMappingURL=app.crud.service.js.map
