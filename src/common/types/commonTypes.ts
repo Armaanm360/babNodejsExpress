@@ -43,6 +43,7 @@ export interface IForgetPassProps {
 export interface ILogin {
   email: string;
   password: string;
+  deviceId: string;
 }
 
 export interface IPromiseRes<T> {

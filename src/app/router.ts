@@ -10,6 +10,8 @@ import announcementrouter from '../newAnnouncementModule/announcement.router';
 import BuildingRouter from '../appBuilding/building.router';
 import AppAudit from './../appAudit/app.audit.router';
 import AuditTrail from '../auditTrail/audit.trail.router';
+import PreUserRouter from '../preUser/pre.user.router';
+import PaymentRouter from '../payment/payment.router';
 
 class RootRouter {
   public v1Router = Router();
@@ -24,6 +26,8 @@ class RootRouter {
   private buildingRouter = new BuildingRouter();
   private appAudit = new AppAudit();
   private auditTrail = new AuditTrail();
+  private preUser = new PreUserRouter();
+  private paymnetRouter = new PaymentRouter();
 
   constructor() {
     this.callV1Router();
@@ -76,6 +80,13 @@ class RootRouter {
     this.v1Router.use('/apps', this.appAudit.appAuditRouter);
 
     this.v1Router.use('/audit', this.auditTrail.AuditTrailRouter);
+
+    //create user
+    this.v1Router.use('/users', this.preUser.PreUserRouter);
+
+    //payment
+
+    this.v1Router.use('/payment', this.paymnetRouter.Payrouter);
   }
 }
 

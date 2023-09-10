@@ -96,8 +96,6 @@ class AuditTrailCrudService extends abstract_service_1.default {
                 if (audit_app_device_id) {
                     qb.andWhere('audit_app_device_id', audit_app_device_id);
                 }
-                if () {
-                }
             });
             const totalCount = yield this.db('audit').count();
             return {

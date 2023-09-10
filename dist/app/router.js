@@ -15,6 +15,8 @@ const announcement_router_1 = __importDefault(require("../newAnnouncementModule/
 const building_router_1 = __importDefault(require("../appBuilding/building.router"));
 const app_audit_router_1 = __importDefault(require("./../appAudit/app.audit.router"));
 const audit_trail_router_1 = __importDefault(require("../auditTrail/audit.trail.router"));
+const pre_user_router_1 = __importDefault(require("../preUser/pre.user.router"));
+const payment_router_1 = __importDefault(require("../payment/payment.router"));
 class RootRouter {
     constructor() {
         this.v1Router = (0, express_1.Router)();
@@ -29,6 +31,8 @@ class RootRouter {
         this.buildingRouter = new building_router_1.default();
         this.appAudit = new app_audit_router_1.default();
         this.auditTrail = new audit_trail_router_1.default();
+        this.preUser = new pre_user_router_1.default();
+        this.paymnetRouter = new payment_router_1.default();
         this.callV1Router();
     }
     callV1Router() {
@@ -51,6 +55,10 @@ class RootRouter {
         //create apps
         this.v1Router.use('/apps', this.appAudit.appAuditRouter);
         this.v1Router.use('/audit', this.auditTrail.AuditTrailRouter);
+        //create user
+        this.v1Router.use('/users', this.preUser.PreUserRouter);
+        //payment
+        this.v1Router.use('/payment', this.paymnetRouter.Payrouter);
     }
 }
 exports.default = RootRouter;

@@ -27,7 +27,7 @@ interface Config {
 // Loading process.env as  ENV interface
 const getConfig = (): ENV => {
   return {
-    PORT: process.env.PORT ? Number(process.env.PORT) : 9005,
+    PORT: process.env.PORT ? Number(process.env.PORT) : 10000,
     DB_NAME: process.env.DB_NAME,
     DB_USER: process.env.DB_USER,
     DB_PASS: process.env.DB_PASS,

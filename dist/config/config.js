@@ -10,7 +10,7 @@ dotenv_1.default.config({ path: path_1.default.resolve(__dirname, '../../.env') 
 // Loading process.env as  ENV interface
 const getConfig = () => {
     return {
-        PORT: process.env.PORT ? Number(process.env.PORT) : 9005,
+        PORT: process.env.PORT ? Number(process.env.PORT) : 10000,
         DB_NAME: process.env.DB_NAME,
         DB_USER: process.env.DB_USER,
         DB_PASS: process.env.DB_PASS,
