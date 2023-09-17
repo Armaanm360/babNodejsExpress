@@ -32,6 +32,8 @@ class LoginUserService extends abstract_service_1.default {
     loginService({ email, password, deviceId }) {
         return __awaiter(this, void 0, void 0, function* () {
             const checkuser = yield this.db('users').select('*').where({ email });
+            const name = checkuser[0].name;
+            const payment_status = checkuser[0].payment_status;
             if (!checkuser.length) {
                 return {
                     success: false,
@@ -79,7 +81,7 @@ class LoginUserService extends abstract_service_1.default {
                 success: true,
                 code: 201,
                 message: 'Logged In Successfully',
-                data: { checkuser },
+                data: { userid, name, email, payment_status },
             };
         });
     }

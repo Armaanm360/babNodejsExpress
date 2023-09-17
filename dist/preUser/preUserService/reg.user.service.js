@@ -20,7 +20,9 @@ class preUserRegisterService extends abstract_service_1.default {
         super();
         this.commonService = new common_service_1.default();
     }
-    createReg({ name, email, password, payment_status, deviceuniID, }) {
+    createReg({ name, email, password, 
+    // payment_status,
+    deviceuniID, }) {
         return __awaiter(this, void 0, void 0, function* () {
             const hashpass = yield lib_1.default.hashPass(password);
             //check where it is exsist or not
@@ -35,7 +37,7 @@ class preUserRegisterService extends abstract_service_1.default {
                     name,
                     email,
                     password: hashpass,
-                    payment_status,
+                    // payment_status,
                 });
                 const userid = res[0];
                 const deviceInsert = yield this.db('user_device').insert({
@@ -47,7 +49,7 @@ class preUserRegisterService extends abstract_service_1.default {
                         success: true,
                         code: 201,
                         message: 'User Added Successfull',
-                        data: { name, email, password, payment_status },
+                        data: { name, email, password },
                     };
                 }
                 else {
@@ -60,7 +62,7 @@ class preUserRegisterService extends abstract_service_1.default {
             }
             else {
                 return {
-                    success: true,
+                    success: false,
                     code: 401,
                     message: 'Email Already Exsists',
                 };

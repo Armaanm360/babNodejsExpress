@@ -14,7 +14,7 @@ class preUserRegisterService extends AbstractServices {
     name,
     email,
     password,
-    payment_status,
+    // payment_status,
     deviceuniID,
   }: preUser) {
     const hashpass = await Lib.hashPass(password);
@@ -33,7 +33,7 @@ class preUserRegisterService extends AbstractServices {
         name,
         email,
         password: hashpass,
-        payment_status,
+        // payment_status,
       });
 
       const userid = res[0];
@@ -48,7 +48,7 @@ class preUserRegisterService extends AbstractServices {
           success: true,
           code: 201,
           message: 'User Added Successfull',
-          data: { name, email, password, payment_status },
+          data: { name, email, password },
         };
       } else {
         return {
@@ -59,7 +59,7 @@ class preUserRegisterService extends AbstractServices {
       }
     } else {
       return {
-        success: true,
+        success: false,
         code: 401,
         message: 'Email Already Exsists',
       };

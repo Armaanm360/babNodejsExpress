@@ -11,6 +11,9 @@ class LoginUserService extends AbstractServices {
   public async loginService({ email, password, deviceId }: ILogin) {
     const checkuser = await this.db('users').select('*').where({ email });
 
+    const name = checkuser[0].name;
+    const payment_status = checkuser[0].payment_status;
+
     if (!checkuser.length) {
       return {
         success: false,
@@ -65,7 +68,7 @@ class LoginUserService extends AbstractServices {
       success: true,
       code: 201,
       message: 'Logged In Successfully',
-      data: { checkuser },
+      data: { userid,name,email,payment_status },
     };
   }
 }

@@ -65,7 +65,9 @@ class Uploader extends common_abstract_storage_1.default {
     localUploadRaw(folder, types = uploaderConstants_1.allowAllFileTypes) {
         return (req, _res, next) => {
             req.upFiles = [];
-            const uploadsFolder = `${__dirname}/../../../${uploaderConstants_1.rootFileFolder}/${folder}`;
+            // const uploadsFolder = `${__dirname}/../../${rootFileFolder}/${folder}`;
+            const uploadsFolder = `${__dirname}/${folder}`;
+            console.log(uploadsFolder);
             const storage = multer_1.default.diskStorage({
                 destination: (_req, _file, cb) => {
                     cb(null, uploadsFolder);
