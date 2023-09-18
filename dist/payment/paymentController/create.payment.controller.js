@@ -123,7 +123,7 @@ class PaymentController extends abstract_controller_1.default {
         //get specific system delete
         this.getSystemDelete = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { system } = req.params;
-            const _m = yield this.CreatePaymentService.specSysDelete(system), { code } = _m, data = __rest(_m, ["code"]);
+            const _m = yield this.CreatePaymentService.specSysDelete(Number(system)), { code } = _m, data = __rest(_m, ["code"]);
             res.status(code).json(data);
         }));
     }

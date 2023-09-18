@@ -4,6 +4,7 @@ import { paymentUser } from '../../preUser/utils/paymentTypes';
 import { paymentSystems } from '../../preUser/utils/paymentSystems';
 import multer from 'multer';
 import { magtypes } from '../../preUser/utils/magtypes';
+import { integer } from 'aws-sdk/clients/cloudfront';
 const upload = multer({ dest: "uploads/" });
 
 class CreatePaymentService extends AbstractServices {
@@ -213,7 +214,7 @@ class CreatePaymentService extends AbstractServices {
   }
 
 
-  public async specSysDelete(system:string){
+  public async specSysDelete(system:integer){
     const paymentSystem = await this.db('payments_system').where('system_status',true).where('payment_system_name',system).update({system_status:0});
     return {
       success: true,

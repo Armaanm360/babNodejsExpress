@@ -34,6 +34,10 @@ class CreatePaymentRoute extends AbstractRouter {
     //get all uploaded
     this.router.route('/pdf/uploaded').get(this.createController.getAllUploaded);
 
+    //delete payment system
+    this.router.route('/systems/getall/delete/:system').get(this.createController.getSystemDelete);
+    
+
     //this.router.route('/upload/pdf').post(this.createController.pdfileUpload);
 
 //     const storage = multer.diskStorage({

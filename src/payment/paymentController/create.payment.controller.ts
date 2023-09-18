@@ -194,7 +194,7 @@ class PaymentController extends AbstractController {
     public getSystemDelete = this.asyncWrapper.wrap(
     async(req:Request,res:Response)=>{
       const {system} = req.params
-     const {code, ...data} = await this.CreatePaymentService.specSysDelete(system)
+     const {code, ...data} = await this.CreatePaymentService.specSysDelete(Number(system))
 
      res.status(code).json(data)
     }
