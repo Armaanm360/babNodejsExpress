@@ -49,32 +49,25 @@ class PaymentController extends AbstractController {
 
 
 
+  //pdf status update
 
+  public pdfStatusUpdate = this.asyncWrapper.wrap(
+    async(req:Request,res:Response)=>{
+      const {id} = req.params
+     const {code, ...data} = await this.CreatePaymentService.updatePdfStatus(Number(id))
 
+     res.status(code).json(data)
+    }
+  );
+  //status
 
+  public getStatistics = this.asyncWrapper.wrap(
+    async(req:Request,res:Response)=>{
+     const {code, ...data} = await this.CreatePaymentService.statService()
 
-  // public pdfileUpload = this.asyncWrapper.wrap(
-  //   async (req: Request, res: Response) => {
-      // const storage = multer.diskStorage({
-      //   destination:'./uploads/',
-      //   filename:function(req,file,cb){
-      //     cb(null,Date.now()+'-'+file.originalname);
-
-      //   }
-      // });
-
-      // const upload = multer({storage});
-
-
-
-
-  //     const { upload_magazine_name} = req.body;
-  //     // const {file} = req.file;
-  //     const { code, ...data } = await this.CreatePaymentService.createMagazine({upload_magazine_name});
-
-  //     res.status(code).json(data);
-  //   }
-  // );
+     res.status(code).json(data)
+    }
+  );
 
 
 

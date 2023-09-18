@@ -36,6 +36,15 @@ class CreatePaymentRoute extends AbstractRouter {
 
     //delete payment system
     this.router.route('/systems/getall/delete/:system').get(this.createController.getSystemDelete);
+
+    //pdf status update
+    this.router.route('/systems/update/pdf/status/:id').get(this.createController.pdfStatusUpdate);
+
+
+    //statistics
+    this.router.route('/get/statistics').get(this.createController.getStatistics);
+
+
     
 
     //this.router.route('/upload/pdf').post(this.createController.pdfileUpload);

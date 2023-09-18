@@ -51,79 +51,75 @@ class PaymentController extends abstract_controller_1.default {
             const _b = yield this.CreatePaymentService.createProMagazine(payload), { code } = _b, data = __rest(_b, ["code"]);
             res.status(code).json(data);
         }));
-        // public pdfileUpload = this.asyncWrapper.wrap(
-        //   async (req: Request, res: Response) => {
-        // const storage = multer.diskStorage({
-        //   destination:'./uploads/',
-        //   filename:function(req,file,cb){
-        //     cb(null,Date.now()+'-'+file.originalname);
-        //   }
-        // });
-        // const upload = multer({storage});
-        //     const { upload_magazine_name} = req.body;
-        //     // const {file} = req.file;
-        //     const { code, ...data } = await this.CreatePaymentService.createMagazine({upload_magazine_name});
-        //     res.status(code).json(data);
-        //   }
-        // );
+        //pdf status update
+        this.pdfStatusUpdate = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const _c = yield this.CreatePaymentService.updatePdfStatus(Number(id)), { code } = _c, data = __rest(_c, ["code"]);
+            res.status(code).json(data);
+        }));
+        //status
+        this.getStatistics = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
+            const _d = yield this.CreatePaymentService.statService(), { code } = _d, data = __rest(_d, ["code"]);
+            res.status(code).json(data);
+        }));
         //list of users
         this.userList = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const _c = yield this.CreatePaymentService.allUsers(), { code } = _c, data = __rest(_c, ["code"]);
+            const _e = yield this.CreatePaymentService.allUsers(), { code } = _e, data = __rest(_e, ["code"]);
             res.status(code).json(data);
         }));
         this.getAllUploaded = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const _d = yield this.CreatePaymentService.allUploads(), { code } = _d, data = __rest(_d, ["code"]);
+            const _f = yield this.CreatePaymentService.allUploads(), { code } = _f, data = __rest(_f, ["code"]);
             res.status(code).json(data);
         }));
         //userid,email,deviceid,type,payby,transactionID
         this.allPayment = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const _e = yield this.CreatePaymentService.allPayments(), { code } = _e, data = __rest(_e, ["code"]);
+            const _g = yield this.CreatePaymentService.allPayments(), { code } = _g, data = __rest(_g, ["code"]);
             res.status(code).json(data);
         }));
         //approve payment 
         this.approvePayment = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { userid } = req.params;
-            const _f = yield this.CreatePaymentService.updateUser(userid), { code } = _f, data = __rest(_f, ["code"]);
+            const _h = yield this.CreatePaymentService.updateUser(userid), { code } = _h, data = __rest(_h, ["code"]);
             res.status(code).json(data);
         }));
         //reject payment
         this.rejectPayment = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { userid } = req.params;
-            const _g = yield this.CreatePaymentService.rejectUser(userid), { code } = _g, data = __rest(_g, ["code"]);
+            const _j = yield this.CreatePaymentService.rejectUser(userid), { code } = _j, data = __rest(_j, ["code"]);
             res.status(code).json(data);
         }));
         //create payment systems
         this.createSystem = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { payment_system_name, payment_system_number, payment_system_type } = req.body;
-            const _h = yield this.CreatePaymentService.createSysService({
+            const _k = yield this.CreatePaymentService.createSysService({
                 payment_system_name,
                 payment_system_number,
                 payment_system_type
-            }), { code } = _h, data = __rest(_h, ["code"]);
+            }), { code } = _k, data = __rest(_k, ["code"]);
             res.status(code).json(data);
         }));
         //list payment systems
         this.listSystem = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const _j = yield this.CreatePaymentService.allSystems(), { code } = _j, data = __rest(_j, ["code"]);
+            const _l = yield this.CreatePaymentService.allSystems(), { code } = _l, data = __rest(_l, ["code"]);
             res.status(code).json(data);
         }));
         //get specific system
         this.getSystem = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { system } = req.params;
-            const _k = yield this.CreatePaymentService.specSys(system), { code } = _k, data = __rest(_k, ["code"]);
+            const _m = yield this.CreatePaymentService.specSys(system), { code } = _m, data = __rest(_m, ["code"]);
             res.status(code).json(data);
         }));
         //get specific system update
         this.getSystemUpdate = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { system } = req.params;
             const { payment_system_name, payment_system_number, payment_system_type } = req.query;
-            const _l = yield this.CreatePaymentService.specSysUpdate(String(system), String(payment_system_name), String(payment_system_number), String(payment_system_type)), { code } = _l, data = __rest(_l, ["code"]);
+            const _o = yield this.CreatePaymentService.specSysUpdate(String(system), String(payment_system_name), String(payment_system_number), String(payment_system_type)), { code } = _o, data = __rest(_o, ["code"]);
             res.status(code).json(data);
         }));
         //get specific system delete
         this.getSystemDelete = this.asyncWrapper.wrap((req, res) => __awaiter(this, void 0, void 0, function* () {
             const { system } = req.params;
-            const _m = yield this.CreatePaymentService.specSysDelete(Number(system)), { code } = _m, data = __rest(_m, ["code"]);
+            const _p = yield this.CreatePaymentService.specSysDelete(Number(system)), { code } = _p, data = __rest(_p, ["code"]);
             res.status(code).json(data);
         }));
     }
